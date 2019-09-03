@@ -1,0 +1,129 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Presentacion.Site" %>
+
+<!DOCTYPE html>
+
+<%--<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/jumbotron-narrow.css" rel="stylesheet" />
+    
+
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <div class="container">
+        <div class="header clearfix">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation"><a href="Presentacion.aspx">Inicio</a></li>
+                    <li role="presentation"><a href="FormularioCliente.aspx">Cargar Cliente</a></li>
+                    <li role="presentation"><a href="ListarCliente.aspx">Listar Clientes</a></li>
+                    <li role="presentation"><a href="ReservarTurno.aspx">Reservar Turno</a></li>
+                    <li role="presentation"><a href="ListarTurno.aspx">Listar Turnos</a></li>
+                    <li role="presentation"><a href="FormularioCancha.aspx">Formulario Cancha</a></li>
+                    <li role="presentation"><a href="ListarCancha.aspx">Listar Canchas</a></li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">Dallen Paddle</h3>
+        </div>
+
+        <form id="form" runat="server">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+        </form>
+
+        <footer class="footer">
+            <p>Realizado por Campos Rodrigo, Palomeque Ivan, Tala Gaston. © 2019 - Copyright </p>
+        </footer>
+
+    </div>
+
+    
+
+</body>
+</html>--%>
+
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/jumbotron-narrow.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
+    
+   <%--///--%>  
+   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+     <%--///--%> 
+
+
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    
+   <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><span><img alt="DPLogo" src="Imagenes/DPLogo.jpg" height="30"></span> Dallen Paddle</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="Home.aspx">Inicio <span class="sr-only">(current)</span></a></li>
+        
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Clientes <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="FormularioCliente.aspx">Agregar Cliente</a></li>
+              <li><a href="ListarCliente.aspx">Listar Clientes</a></li>
+                         
+          </ul>
+        </li>
+
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Turnos <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <%--<li><a href="ReservarTurno.aspx">Reservar Turno</a></li>--%>
+              <li><a href="ListarTurno.aspx">Listar Turnos</a></li>
+           </ul>
+        </li>
+
+           <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Canchas <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="FormularioCancha.aspx">Agregar Cancha</a></li>
+              <li><a href="ListarCancha.aspx">Listar Canchas</a></li>
+           </ul>
+        </li>
+
+        </ul>
+
+            
+     
+    </div><!-- /.navbar-collapse -->
+      
+  </div><!-- /.container-fluid -->
+</nav>
+    <form id="form" runat="server">
+            
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+        </form>
+
+    
+    
+</body>
+
+</html>
