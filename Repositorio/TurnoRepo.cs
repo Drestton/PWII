@@ -22,14 +22,15 @@ namespace Repositorio
 
                 conn.Open();
 
-                string query = "INSERT INTO dbo.Turno (idCliente, idCancha, fecha, franjaHoraria ,estado) VALUES  (@idCliente, @idCancha, @fecha, @franjaHoraria, @estado)";
-                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlCommand cmd = new SqlCommand("turnoGuardar", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
                 cmd.Parameters.AddWithValue("@idCliente", turnos.IdCliente);
                 cmd.Parameters.AddWithValue("@idCancha", turnos.IdCancha);
                 cmd.Parameters.AddWithValue("@fecha", turnos.Fecha);
                 cmd.Parameters.AddWithValue("@franjaHoraria", turnos.FranjaHoraria1);
                 cmd.Parameters.AddWithValue("@estado", turnos.Estado);
-
+                
                 cmd.ExecuteNonQuery();
                 conn.Close();
             }
@@ -42,8 +43,9 @@ namespace Repositorio
             {
                 conn.Open();
 
-                string query = "DELETE FROM dbo.Turno WHERE turnos_Id = @turnos_Id";
-                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlCommand cmd = new SqlCommand("turnoBorrar", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
                 cmd.Parameters.AddWithValue("@turnos_Id", turnos.Turnos_Id);
 
                 cmd.ExecuteNonQuery();
@@ -60,8 +62,8 @@ namespace Repositorio
             {
                 conn.Open();
 
-                string query = "UPDATE dbo.Turno SET idCliente=@idCliente, idCancha=@idCancha, fecha=@fecha, franjaHoraria=@franjaHoraria, estado=@estado WHERE turnos_Id=@turnos_Id ";
-                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlCommand cmd = new SqlCommand("turnoModificar", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@turnos_Id", turnos.Turnos_Id);
                 cmd.Parameters.AddWithValue("@idCliente", turnos.IdCliente);
@@ -79,11 +81,10 @@ namespace Repositorio
         {
             DataTable dataTable = new DataTable();
 
-            String query = "SELECT * FROM dbo.Turno";
-
             SqlConnection conn = new SqlConnection(cnn);
 
-            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlCommand cmd = new SqlCommand("turnoListar", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
 
@@ -102,7 +103,7 @@ namespace Repositorio
 
             SqlDataReader sdr = null;
 
-            string query = "SELECT * FROM Turno WHERE turnos_Id = @turnos_Id";
+           // string query = "SELECT * FROM Turno WHERE turnos_Id = @turnos_Id";
 
             SqlConnection conn = new SqlConnection(cnn);
 
@@ -110,11 +111,11 @@ namespace Repositorio
             {
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlCommand cmd = new SqlCommand("turnoBuscarPorId", conn);
 
                 cmd.Parameters.AddWithValue("@turnos_Id", turnos_Id);
 
-                cmd.CommandType = CommandType.Text;
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.ExecuteNonQuery();
 
                 sdr = cmd.ExecuteReader();

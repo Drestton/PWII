@@ -19,12 +19,12 @@ namespace Repositorio
         {
             DataTable dataTable = new DataTable();
 
-            String query = "SELECT * from Cliente";
-
             SqlConnection conn = new SqlConnection(cnn);
+        
             conn.Open();
 
-            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlCommand cmd = new SqlCommand("clienteListar", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
 
             //toma el datatable y mete lo que traigamos de la query
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -44,8 +44,8 @@ namespace Repositorio
 
                 conn.Open();
 
-                string query = "INSERT INTO dbo.Cliente (  nombreApellido, edad, documento, direccion, correoElectronico, telefono  ) VALUES  (  @nombreApellido, @edad, @documento, @direccion, @correoElectronico, @telefono)";
-                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlCommand cmd = new SqlCommand("clienteGuardar", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@nombreApellido", cliente.NombreApellido);
                 
@@ -68,8 +68,9 @@ namespace Repositorio
 
                 conn.Open();
 
-                string query = "DELETE FROM dbo.Cliente WHERE idCliente = @idCliente";
-                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlCommand cmd = new SqlCommand("clienteBorrar", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
                 cmd.Parameters.AddWithValue("@idCliente", cliente.IdCliente);
                 cmd.ExecuteNonQuery();
             }
@@ -84,8 +85,8 @@ namespace Repositorio
             {
                 conn.Open();
 
-                string query = "UPDATE dbo.Cliente SET  nombreApellido = @nombreApellido,  edad = @edad, documento = @documento, direccion = @direccion, correoElectronico = @correoElectronico, telefono = @telefono WHERE idCliente = @idCliente";
-                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlCommand cmd = new SqlCommand("clienteModificar", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@idCliente", cliente.IdCliente);
                 cmd.Parameters.AddWithValue("@nombreApellido", cliente.NombreApellido);
@@ -105,19 +106,17 @@ namespace Repositorio
 
             SqlDataReader sdr = null;
 
-            string query = "SELECT * FROM Cliente WHERE idCliente = @idCliente";
-
             SqlConnection conn = new SqlConnection(cnn);
 
             try
             {
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlCommand cmd = new SqlCommand("clienteBuscarPorId", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@idCliente", idCliente);
 
-                cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();
 
                 sdr = cmd.ExecuteReader();

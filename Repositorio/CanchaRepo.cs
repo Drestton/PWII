@@ -22,12 +22,13 @@ namespace Repositorio
             {
                 conn.Open();
 
-                string query = "INSERT INTO dbo.Cancha (tipoCancha, numeroCancha, estado) VALUES  (@seleCancha, @numeroCancha, @seleEstado)";
-                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlCommand cmd = new SqlCommand("canchaGuardarModificar", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@seleCancha", cancha.SeleCancha);
+                cmd.Parameters.AddWithValue("@idCancha", 0);
+                cmd.Parameters.AddWithValue("@tipoCancha", cancha.SeleCancha);
                 cmd.Parameters.AddWithValue("@numeroCancha", cancha.NumeroCancha);
-                cmd.Parameters.AddWithValue("@seleEstado", cancha.SeleEstado);
+                cmd.Parameters.AddWithValue("@estado", cancha.SeleEstado);
 
                 cmd.ExecuteNonQuery();
             }
@@ -40,8 +41,8 @@ namespace Repositorio
             {
                 conn.Open();
 
-                string query = "DELETE FROM dbo.Cancha WHERE idCancha = @idCancha";
-                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlCommand cmd = new SqlCommand("canchaBorrar", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@idCancha", cancha.IdCancha);
 
@@ -53,12 +54,11 @@ namespace Repositorio
         {
             DataTable dataTable = new DataTable();
 
-            String query = "SELECT * from Cancha";
-
             SqlConnection conn = new SqlConnection(cnn);
             conn.Open();
 
-            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlCommand cmd = new SqlCommand("canchaListar", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
 
@@ -76,13 +76,13 @@ namespace Repositorio
             {
                 conn.Open();
 
-                string query = "UPDATE dbo.Cancha SET tipoCancha = @seleCancha, numeroCancha = @numeroCancha, estado = @seleEstado WHERE idCancha=@idCancha";
-                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlCommand cmd = new SqlCommand("canchaGuardarModificar", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@idCancha", cancha.IdCancha);
-                cmd.Parameters.AddWithValue("@seleCancha", cancha.SeleCancha);
+                cmd.Parameters.AddWithValue("@tipoCancha", cancha.SeleCancha);
                 cmd.Parameters.AddWithValue("@numeroCancha", cancha.NumeroCancha);
-                cmd.Parameters.AddWithValue("@seleEstado", cancha.SeleEstado);
+                cmd.Parameters.AddWithValue("@estado", cancha.SeleEstado);
 
                 cmd.ExecuteNonQuery();
             }
@@ -94,19 +94,17 @@ namespace Repositorio
 
             SqlDataReader sdr = null;
 
-            string query = "SELECT * FROM Cancha WHERE idCancha = @idCancha";
-
             SqlConnection conn = new SqlConnection(cnn);
 
             try
             {
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlCommand cmd = new SqlCommand("canchaBuscarPorId", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@idCancha", idCancha);
 
-                cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();
 
                 sdr = cmd.ExecuteReader();
