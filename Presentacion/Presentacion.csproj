@@ -148,6 +148,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Servicio.asmx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -228,6 +229,10 @@
     </Compile>
     <Compile Include="ReservarTurno.aspx.designer.cs">
       <DependentUpon>ReservarTurno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Servicio.asmx.cs">
+      <DependentUpon>Servicio.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
