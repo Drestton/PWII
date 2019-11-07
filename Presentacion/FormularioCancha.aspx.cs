@@ -6,16 +6,29 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
 using Negocio;
+using System.Data;
 
 namespace Presentacion
 {
     public partial class FormularioCancha : System.Web.UI.Page
     {
-        CanchaNego canchaNego = new CanchaNego();
+        private CanchaNego canchaNego = new CanchaNego();
+        private Cancha cancha = new Cancha();
+        private ListItem items;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            for (int x = 0; x < cancha.Estado.Length; x++)
+            {
+                items = new ListItem(cancha.Estado.GetValue(x).ToString(), x.ToString());
+                ddlEstado.Items.Add(items);
+            }
 
+            for (int x = 0; x < cancha.TipoCancha.Length; x++)
+            {
+                items = new ListItem(cancha.TipoCancha.GetValue(x).ToString(), x.ToString());
+                ddlTipoCancha.Items.Add(items);
+            }
         }
 
         public void GuardarCancha()

@@ -13,7 +13,7 @@
                         <div class="form-group">
                             <asp:Label ID="lblTipoCancha" runat="server" Text="--Seleccione el tipo de cancha--"></asp:Label>
                             <asp:LinqDataSource ContextTypeName="Dominio.Cancha" TableName="TipoCancha" ID="ldsTipoCancha" runat="server"></asp:LinqDataSource>
-                            <asp:DropDownList DataSourceID="ldsTipoCancha" ID="ddlTipoCancha" runat="server"></asp:DropDownList>
+                            <asp:DropDownList DataSourceID="ldsTipoCancha" ID="ddlTipoCancha" runat="server" Class="form-control"></asp:DropDownList>
                         </div>
 
                         <div class="form-group">
@@ -24,7 +24,7 @@
                         <div class="form-group">
                             <asp:Label ID="lblEstado" runat="server" Text="--Seleccione el Estado de la Cancha--"></asp:Label>
                             <asp:LinqDataSource ContextTypeName="Dominio.Cancha" TableName="Estado" ID="ldsEstado" runat="server"></asp:LinqDataSource>
-                            <asp:DropDownList DataSourceID="ldsEstado" ID="ddlEstado" runat="server"></asp:DropDownList>
+                            <asp:DropDownList DataSourceID="ldsEstado" ID="ddlEstado" runat="server" Class="form-control"></asp:DropDownList>
                         </div>
   
                         <div>
